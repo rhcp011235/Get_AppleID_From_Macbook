@@ -19,7 +19,7 @@ if match:
     match = email_pattern.search(binary_bytes)
     if match:
         email_address = match.group().decode('utf-8')
-        print("Email address:", email_address)
+        print("Apple ID:", email_address)
         #print("Binary data:", binary_bytes)
 else:
     print("nvram-proxy-data key not found")

@@ -1,7 +1,8 @@
 import re
+import os
 
 # Define the file path (use the correct path for your file)
-file_path = "./IODeviceTree.txt"
+file_path = os.path.realpath('./IODeviceTree.txt')
 email_pattern = re.compile(rb'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
 
 # Read the file content

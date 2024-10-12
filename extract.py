@@ -1,7 +1,8 @@
 import re
+import os
 
 # Define the file path (use the correct path for your file)
-file_path = "./IODeviceTree.txt"
+file_path = os.path.realpath('./IODeviceTree.txt')
 
 # Read the file content
 with open(file_path, 'r') as file:

@@ -11,6 +11,12 @@ email_pattern = re.compile(rb'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
 with open(file_path, 'r') as file:
     content = file.read()
 
+# Check for what model
+match = re.search(r'model"\s*=\s*<"([^"]+)"', content)
+model = match.group(1)
+print("Model:",model)
+
+# Check for serial number
 match = re.search(r'IOPlatformSerialNumber"\s*=\s*"([^"]+)"', content)
 serial_number = match.group(1)
 print("Serial Number:",serial_number)

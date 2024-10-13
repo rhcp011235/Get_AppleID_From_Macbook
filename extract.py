@@ -1,11 +1,10 @@
 import re
 import os
+import binascii
+import plistlib
 
 # Define the file path (use the correct path for your file)
 file_path = os.path.realpath('./IODeviceTree.txt')
-
-alphanumeric_pattern = r'\b[A-Z0-9]{10}\b'
-email_pattern = re.compile(rb'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
 
 # Read the file content
 with open(file_path, 'r') as file:
@@ -21,20 +20,18 @@ match = re.search(r'IOPlatformSerialNumber"\s*=\s*"([^"]+)"', content)
 serial_number = match.group(1)
 print("Serial Number:",serial_number)
 
-# Search for the 'nvram-proxy-data' key and capture the binary data
-match = re.search(r'"nvram-proxy-data"\s+=\s+<([0-9a-fA-F]+)>', content)
 
-# If the key is found, extract the data
+# Search for the 'fmm-mobileme-token-FMM' key and capture the binary data
+match = re.search(r'"fmm-mobileme-token-FMM"\s+=\s+<([0-9a-fA-F]+)>', content)
+
 if match:
+    hex_data = match.group(1)
+    binary_data = binascii.unhexlify(hex_data)
+    plist_data = plistlib.loads(binary_data)
+    
+    user_info = plist_data['userInfo']
+    print(f"First Name: {user_info['InUseOwnerFirstName']}")
+    print(f"Last Name: {user_info['InUseOwnerLastName']}")
 
-    binary_data = match.group(1)
-    # Convert the hex string to bytes
-    binary_bytes = bytes.fromhex(binary_data)
-    ascii_string = binary_bytes.decode('utf-8', errors='ignore')
-
-    email_matches = re.findall(email_pattern, binary_bytes)
-    print("Apple ID",email_matches)
-
-    #print("Binary data:", ascii_string)
-else:
-    print("nvram-proxy-data key not found")
+    apple_id = plist_data['username']
+    print("Apple ID:", apple_id)

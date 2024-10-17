@@ -37,3 +37,5 @@ Since this is FREE!! and people are trying to rip you off $30 to $50 dollars all
 Buy me a coffee (Paypal) : https://www.paypal.com/donate/?hosted_button_id=3YV2BWQRN6YF8
 
 Buy me a coffee (Cofee) : https://buymeacoffee.com/g6c29jy7cbN
+
+Send via USDT (binance) - 0xfaed453da202d71061e43e39b8c3621a73df74ba
